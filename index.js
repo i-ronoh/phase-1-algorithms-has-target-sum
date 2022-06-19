@@ -1,38 +1,38 @@
 function hasTargetSum(array, target) {
-  // create object to track numbers
-  const seenNumbers = {};
-  // iterate over the array of numbers
-  for (const number of array) {
-    // for the current number, identify a complementary number that adds to our target
-    // (e.g.: if current number = 3, & target = 7, then complementary number = 4)
-    const complement = target - number;
-    // are any of the keys in our object complementary to the current number
-    // if yes, return true
-    if (seenNumbers[complement]) return true;
-    // save the current number as the key on our object to check it later against other values
-    seenNumbers[number] = true;
+  // Iterate through the loop by comparing the index number with all the items in the array,
+  // ... to confirm if the adds up to the target. If index at [0] fails to find the total sum number, i moves to index [1] and compares 
+  // with all the items in the array and so forth until its done
+
+  for (var i = 0; i< array.length; i++){
+    for (var j = i+1; j < array.length; j++){
+      if (array[i] + array[j] === target){
+        return true
+      };
+       
+    }
   }
-  // at the end of the array, return false
-  return false;
+  return false
 }
+
 
 /* 
   Write the Big O time complexity of your function here
-   Runtime: O(n^2)
-   Space: O(n)
+  O(N^2)
 */
 
 /* 
   Add your pseudocode here
-  Iterate through each item in the array
-  for the current num, identify a complementary number that adds to our target
-  check if any key is our complementary number
-  if yes, return true
-  at the end of the array, return false
+  Loop through the array starting with the index[0] comaring with each item in the array list
+  if if finds an add sum Number that makes it sum to the rarget;
+  return true
+  else keep looping with the second item;
 */
 
 /*
   Add written explanation of your solution here
+  Iterating through the loop by comparing the index number with all the items in the array,
+  ... to confirm if the adds up to the target. If index at [0] fails to find the total sum number, i move to index [1] and compare 
+  with all the items in the array and so on untill its done
 */
 
 // You can run `node index.js` to view these console logs
@@ -54,17 +54,12 @@ if (require.main === module) {
   console.log("");
   // Negative numbers?
   console.log("Expecting: true");
-  console.log("=>", hasTargetSum([-5, 10, 3, 7], 5));
+  console.log("=>", hasTargetSum([-5, 10, 7, 3], 5));
 
   console.log("");
   // Multiple pairs?
   console.log("Expecting: true");
   console.log("=>", hasTargetSum([1, 2, 3, 4], 5));
-
-  console.log("");
-  // Single numbers?
-  console.log("Expecting: false");
-  console.log("=>", hasTargetSum([4], 4));
 }
 
 module.exports = hasTargetSum;
